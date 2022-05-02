@@ -31,7 +31,7 @@ class SendMoneyServiceTest {
 			Mockito.mock(UpdateAccountStatePort.class);
 
 	private final SendMoneyService sendMoneyService =
-			new SendMoneyService(loadAccountPort, accountLock, updateAccountStatePort);
+			new SendMoneyService(accountLock, loadAccountPort, updateAccountStatePort);
 
 	@Test
 	void givenWithdrawalFails_thenOnlySourceAccountIsLockedAndReleased() {
