@@ -21,7 +21,6 @@ public class SendMoneyService implements SendMoneyUseCase {
 	private final LoadAccountPort loadAccountPort;
 	private final AccountLock accountLock;
 	private final UpdateAccountStatePort updateAccountStatePort;
-	private final MoneyTransferProperties moneyTransferProperties;
 
 	@Override
 	public boolean sendMoney(SendMoneyCommand command) {
@@ -65,9 +64,7 @@ public class SendMoneyService implements SendMoneyUseCase {
 	}
 
 	private void checkThreshold(SendMoneyCommand command) {
-		if(command.getMoney().isGreaterThan(moneyTransferProperties.getMaximumTransferThreshold())){
-			throw new ThresholdExceededException(moneyTransferProperties.getMaximumTransferThreshold(), command.getMoney());
-		}
+		// ...
 	}
 
 }

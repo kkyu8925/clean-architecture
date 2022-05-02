@@ -31,7 +31,7 @@ class SendMoneyServiceTest {
 			Mockito.mock(UpdateAccountStatePort.class);
 
 	private final SendMoneyService sendMoneyService =
-			new SendMoneyService(loadAccountPort, accountLock, updateAccountStatePort, moneyTransferProperties());
+			new SendMoneyService(loadAccountPort, accountLock, updateAccountStatePort);
 
 	@Test
 	void givenWithdrawalFails_thenOnlySourceAccountIsLockedAndReleased() {
@@ -139,10 +139,6 @@ class SendMoneyServiceTest {
 		given(loadAccountPort.loadAccount(eq(account.getId().get()), any(LocalDateTime.class)))
 				.willReturn(account);
 		return account;
-	}
-
-	private MoneyTransferProperties moneyTransferProperties(){
-		return new MoneyTransferProperties(Money.of(Long.MAX_VALUE));
 	}
 
 }
